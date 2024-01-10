@@ -1,0 +1,26 @@
+task-1 -> done!
+when a user fills the registration form, store their values in your database
+eg.
+name: alex
+phno: 9876543210
+password: alex@123
+
+task-2 -> done!
+get all books from the db
+
+task-3 -> done!
+login
+
+task-4
+borrow book
+
+
+
+
+
+
+
+
+
+
+<img src="../assets/library-photo.jpeg" alt="library-photo" style="width: 100%; height: auto; z-index: 1; position: absolute">

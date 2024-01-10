@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        td {
+            padding: 10px;
+        }
+        #submitBtn {
+            margin-left: 100px;
+        }
+        #hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register with us!</h1>
+    <form action="/registeration" method="POST">
+        <table>
+            <tr>
+                <td><label for="username">Enter username: </label></td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td><label for="phno">Phone number: </label></td>
+                <td><input type="text" name="phno"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Enter Password: </label></td>
+                <td><input type="password" name="password"></td>
+            </tr>
+        </table>
+        <div>
+            <h2>Generate a secure password!</h2>
+            <input type="text" id="rp" style="margin-right: 10px; width: 300px;">
+            <span id="len">8</span>
+            <br>
+            <input type="range" min="8" max="40" value="8" id="range" onchange="changeLength()" style="margin-left: 20px;">
+        </div>
+        <br>
+        <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    <script>
+        function changeLength() {
+            const length = document.querySelector("#range").value;
+            document.querySelector("#len").innerText = length;
+
+            let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()_{}";
+            let pass = "";
+            console.log(length);
+            for (let i = 1; i <= length; i++) {
+                let char = Math.floor(Math.random() * str.length);
+                pass += str[char];
+            }
+
+            // console.log(pass);
+            
+            document.querySelector("#rp").value = pass;
+        }
+
+        function generatePassword() {
+            let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()_{}";
+            let pass = "";
+            const length = document.querySelector("#len");
+            for (let i = 1; i <= length; i++) {
+                let char = Math.floor(Math.random() * str.length);
+                pass += str[char];
+            }
+            
+            document.querySelector("#rp").value = pass;
+        }
+        
+    </script>
+</body>
+</html>

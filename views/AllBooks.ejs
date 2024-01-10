@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+</head>
+<style>
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    td:hover {
+        padding: 8.5px;
+    }
+    .main {
+        display: flex;
+        justify-content: space-between;
+    }
+    .userProfile {
+        border: 2px solid black;
+        height: 20px;
+        padding: 10px;
+        margin: 10px;
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<body>
+    <div class="main">
+        <div>
+            <h1>Library</h1>
+            <table id="bookTable">
+                <tr>
+                    <th>Book Name</th>
+                    <th>Quantity Available</th>
+                    <th>Action</th>
+                </tr>
+                <% allBooks.forEach((book) => { %>
+                        <tr>
+                            <td><%=book.bookName%></td>
+                            <td><%=book.quantityAvailable%></td>
+                            <td><a href="borrow">Borrow</a></td>
+                        </tr>
+                <% }) %>
+            </table>
+        </div>
+        <a href="profile" class="userProfile"><%=username%></a>
+    </div>
+    
+
+    <script>
+        // const books = [{"bookName": "GoT", "qty": "10"}, {"bookName": "GoT", "qty": "10"}, {"bookName": "GoT", "qty": "10"}];
+        // books.forEach((book) => {
+        //     const table = document.querySelector("#bookTable");
+        //     const tr = document.createElement("tr");
+        //     const name = document.createElement("td");
+        //     name.innerText = book.bookName;
+        //     tr.appendChild(name);
+        //     const qty = document.createElement("td");
+        //     qty.innerText = book.qty;
+        //     tr.appendChild(qty);
+        //     table.appendChild(tr);
+        // });
+    </script>
+</body>
+</html>

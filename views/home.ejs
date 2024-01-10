@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            position: sticky;
+            top: 0px;
+            background-color: orange;
+            padding: 10px;
+        }
+        #heading {
+            font-size: xx-large;
+        }
+        .btn {
+            border: 2px solid #212121;
+            padding: 5px;
+            margin-right: 20px;
+            color: #212121;
+            text-decoration: none;
+            background: none;
+        }
+        .btn:hover {
+            background-color: #212121;
+            color: white;
+        }
+
+        td, th {
+            border: 1px solid orange;
+            text-align: left;
+            padding: 8px;
+        }
+        td:hover {
+            padding: 8.5px;
+        }
+
+        .app {
+            display: flex;
+            justify-content: space-between;
+        }
+        .library {
+            color: #212121;
+            margin: 20px;
+            border: 2px solid orange;
+        }
+        .UserBooks {
+            margin: 20px;
+            border: 2px solid brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div id="heading">Library Management System</div>
+        <div style="margin-top: 10px;">
+            <% if(username === "session_user") { %>
+                <a href="register" class="btn">Register</a>
+                <a href="login" class="btn">Login</a>
+            <% } else { %>
+                <span style="margin-right: 20px; font-size: x-large;">Welcome, <%=username%></span>
+            <% } %>
+        </div>
+    </div>
+    <div class="app">
+        <div class="library">
+            <table id="bookTable">
+                <tr>
+                    <th>Book Name</th>
+                    <th>Quantity Available</th>
+                    <th>Action</th>
+                </tr>
+                <% allBooks.forEach((book) => { %>
+                        <tr>
+                            <td><%=book.bookName%></td>
+                            <td><%=book.quantityAvailable%></td>
+                            <td>
+                                <form action="/borrowBook" method="POST" id="borrowForm">
+                                    <input type="hidden" name="username" value="<%=username%>">
+                                    <input type="hidden" name="bookName" value="<%=book.bookName%>">
+                                    <input type="submit" value="borrow" class="btn">
+                                </form>
+                            </td>
+                        </tr>
+                <% }) %>
+            </table>
+        </div>
+        <div class="UserBooks">
+            <table>
+                <tr>
+                    <th style="border: 1px solid brown">My Shelf</th>
+                    <th style="border: 1px solid brown">Action</th>
+                </tr>
+                <% userBooks.forEach((userBook) => { %>
+                    <tr>
+                        <td><%=userBook.bookName%></td>
+                        <td>
+                            <form action="/returnBook" method="POST">
+                                <input type="hidden" name="username" value="<%=username%>">
+                                <input type="hidden" name="bookname" value="<%=userBook.bookName%>">
+                                <input type="submit" value="return" class="btn">
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
